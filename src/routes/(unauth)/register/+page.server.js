@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { supabase } from "$lib/supabase.js";
 import { nav } from '../../../lib/store/store'
 // import { isUpdate, input } from "../../../lib/store/contactStore";
@@ -27,7 +28,6 @@ export const actions = {
             email,
             password,
         }
-        console.log(contact)
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
@@ -35,9 +35,18 @@ export const actions = {
         
         let register = false
         if (error) {
-            return console.error(error);
+            let message = ''
+            console.log('error',error)
+            if (error.status === 400) {
+                message = 'Email already exists'
+            } 
+            if (error.status === 422) {
+                message = 'Password should be at least 6 characters'
+            }
+            // 422 - Password should be at least 6 characters
+            // 400 - Email already exists
+            return {error: error.status, message: error.message}
         }
-        console.log(data)
         register = true
         return { register}
         // if (data) {

@@ -2,19 +2,32 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 
-	let email = '';
-	let password = '';
 
 	/** @type {import('./$types').ActionData} */
 
 	export let form;
+
+	let email = '';
+	let password = '';
+	let isError = false;
 	$: isRegister = false;
+	
 	$: {
 		if (form?.register) {
 			isRegister = true;
 			setTimeout(() => {
 				goto('/login');
 			}, 2000);
+		}
+	}
+	$: {
+		if (form?.error) {
+			isError = true;
+		}
+	}
+	$: {
+		if(email && password) {
+			isError = false;
 		}
 	}
 </script>
@@ -29,7 +42,14 @@
 						class="w-full bg-green-200 p-3 rounded-lg mb-3 flex flex-col justify-center items-center"
 					>
 						<p>Successfully registered</p>
-						<p>redirecting...</p>
+						<p class="text-xs">redirecting...</p>
+					</div>
+				{/if}
+				{#if isError}
+					<div
+						class="w-full bg-red-200 p-3 rounded-lg mb-3 flex flex-col justify-center items-center"
+					>
+						<p>{form?.message}</p>
 					</div>
 				{/if}
 
@@ -38,12 +58,14 @@
 					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="email"
 					placeholder="Email"
+					bind:value={email}
 				/>
 				<input
 					type="password"
 					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="password"
 					placeholder="Password"
+					bind:value={password}
 				/>
 				<!-- <input
 					type="password"
