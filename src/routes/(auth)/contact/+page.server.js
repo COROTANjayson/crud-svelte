@@ -1,9 +1,6 @@
 // @ts-nocheck
 import { supabase } from "$lib/supabase.js";
-// import { nav } from '../../../store'
-// import { formButton, input } from "$lib/store/contactStore";
 import { fail } from '@sveltejs/kit';
-// import { user } from "../../..authStore";
 /** @type {import('../$types').PageServerLoad} */
 
 export async function load({ params, url }) {
@@ -36,9 +33,7 @@ export const actions = {
             user_id
 
         };
-        // console.log('hh',contact)
     
-        // let letters = /^[A-Za-z]+$/;
         /**
          * @param {string} str
          */
@@ -86,7 +81,6 @@ export const actions = {
             }
         }
 
-        // formButton.update((n) => (n = false));
         const { error } = await supabase.from('contact').update(contact).match({ id })
         if (error) {
             return console.error(error);

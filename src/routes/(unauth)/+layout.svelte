@@ -21,13 +21,7 @@
 </script>
 
 <div>
-	<!-- {#if $user} -->
-	<!-- <Navbar/> -->
-
 	<div class="h-screen mt-36">
 		<slot />
 	</div>
-	<!-- {:else }
-      <Auth/>
-  {/if} -->
 </div>

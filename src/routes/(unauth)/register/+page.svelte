@@ -67,12 +67,7 @@
 					placeholder="Password"
 					bind:value={password}
 				/>
-				<!-- <input
-					type="password"
-					class="block border border-grey-light w-full p-3 rounded mb-4"
-					name="confirm_password"
-					placeholder="Confirm Password"
-				/> -->
+			
 				<button type="submit" class="w-full btn btn-primary">Create Account</button>
 			</div>
 

@@ -1,6 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	// import { enhance } from '$app/forms';
 	import { supabase } from '$lib/supabase.js';
 	$: email = '';
 	$: password = '';
@@ -32,7 +31,6 @@
 	}
 </script>
 
-<!-- <form method="POST" on:submit|preventDefault={handleLogin}> -->
 <form class="form-control" method="POST" on:submit|preventDefault={handleLogin}>
 
 	<div class="bg-grey-lighter h-full flex flex-col">

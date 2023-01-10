@@ -14,24 +14,18 @@
 		number: '',
 		id: ''
 	};
-	// let update = 'false';
-	// let isAdded = false;
+	
 	$: {
 		contact = $input;
 	}
 	$: button = $formButton;
 	$: {
-		// isAdded = form?.isAdded;
 		if (form?.isAdded) {
 			modal.update((n) => (n = false));
 		}
 	}
 	$: isOpen = $modal;
-	// $: {
-	// 	if (contact) {
-	// 		isAdded = false;
-	// 	}
-	// }
+	
 	$: {
 		const birthdate = contact.birthdate;
 		contact.age = calculateAge(birthdate);
@@ -48,20 +42,9 @@
 		openModal();
 		formButton.update((n) => (n = 'add'));
 	};
-	// let files;
 
-	// $: if (files) {
-	// 	// Note that `files` is of type `FileList`, not an Array:
-	// 	// https://developer.mozilla.org/en-US/docs/Web/API/FileList
-	// 	console.log(files);
-
-	// 	for (const file of files) {
-	// 		console.log(`${file.name}: ${file.size} bytes`);
-	// 	}
-	// }
 </script>
 
-<!-- <label type="button" for="my-modal" class="btn btn-accent"> Add Contact </label> -->
 <button class="btn btn-accent" on:click={addHandle}> Add Contact </button>
 
 <input type="checkbox" id="my-modal" class="hidden" on:click={closeModal} />

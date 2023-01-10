@@ -4,12 +4,9 @@
 
 	import { contactInput } from '$lib/store/contactStore';
 	import { enhance } from '$app/forms';
-	/**
-	 * @type {{ firstName: any; lastName: any; age: any; birthdate: any; id: any; number: any}}
-	 */
+	
 	export let contact;
 	const handleInput = () => {
-		// @ts-ignore
 		contactInput(contact, contact.id);
 		openModal();
 	};

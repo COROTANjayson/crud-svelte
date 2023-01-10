@@ -21,7 +21,6 @@
 	$: forms = form;
 	$: {
 		contactList = data.contacts;
-		// formButton.update((n) => (n = false));
 		input.update(
 			(n) =>
 				(n = {
@@ -35,25 +34,15 @@
 		);
 	}
 	$: user_id = '';
-	// $: loading = false
 	onMount(async () => {
 		nav.update((nav) => (nav = pathname));
-
 		const getUser = await supabase.auth.getUser();
-		// console.log('User',getUser)
-
 		user.set(getUser);
 		user_id = getUser.data.user.id;
 	});
 </script>
 
 <main>
-	<!-- <div class="h-full flex flex-col xl:flex-row h-screen ">
-		<div class="flex-none md:flex-1 ">
-			<ContactForm form={forms} {user_id} />
-		</div>
-		<div class="flex-none md:flex-1  "> -->
-			<ContactList contacts={contactList} {user_id} form={forms}/>
-		<!-- </div> -->
-	<!-- </div> -->
+	<ContactList contacts={contactList} {user_id} form={forms}/>
+	
 </main>
