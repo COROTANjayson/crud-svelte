@@ -1,25 +1,31 @@
 import { writable } from 'svelte/store';
-import { supabase } from "../supabase.js";
+// @ts-ignore
 export const contacts = writable([]);
 
 export const input = writable({
     firstName: '',
     lastName: '',
     age: '',
-    birthDate: '',
+    birthdate: '',
     number: '',
     id: ''
 });
 // export const id = writable('');
 
-export const isUpdate= writable(false);
+export const formButton= writable('add');
 
+// @ts-ignore
 export const contactInput = async (/** @type {any} */ data, /** @type {any} */ idInput) => {
     // @ts-ignore
     input.update(n => n = data);
-    isUpdate.update(n => n = true);
+    formButton.update(n => n = 'update');
 
 }
+// @ts-ignore
+function containsAnyLetters(str) {
+    return /[a-zA-Z]/.test(str);
+}
+
 // export const loadContacts = async () => {
 //     const { data, error } = await supabase.from('contact').select().order('created_at', { ascending: true });
 //     if (error) {

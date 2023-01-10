@@ -1,8 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { enhance } from '$app/forms';
-	import { supabase } from '../../../supabase.js';
-	import {user} from '../../../store/authStore'
+	// import { enhance } from '$app/forms';
+	import { supabase } from '$lib/supabase.js';
 	$: email = '';
 	$: password = '';
 	$: {
@@ -10,6 +9,7 @@
 			login = true
 		}
 	}
+	$:isLogin = false;
 	$:login = true;
 	async function handleLogin() {
 		try {
@@ -19,11 +19,12 @@
 			});
 			if (data.user !== null) {
 				login = true;
-				// @ts-ignore
-				
+				isLogin = true;
 				goto('/contact');
 			} else {
 				login = false;
+				
+
 			}
 		} catch (error) {
 			console.log(error);
@@ -31,7 +32,9 @@
 	}
 </script>
 
-<form method="POST" on:submit|preventDefault={handleLogin}>
+<!-- <form method="POST" on:submit|preventDefault={handleLogin}> -->
+<form class="form-control" method="POST" on:submit|preventDefault={handleLogin}>
+
 	<div class="bg-grey-lighter h-full flex flex-col">
 		<div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 			<div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
@@ -41,9 +44,14 @@
 						<p class="error">Invalid Credentials</p>
 					</div>
 				{/if}
+				{#if isLogin}
+					<div class="w-full bg-green-200 p-3 rounded-lg mb-3 flex justify-center">
+						<p class="error">Succesfully Login</p>
+					</div>
+				{/if}
 				<input
 					type="text"
-					class="block border border-grey-light w-full p-3 rounded mb-4"
+					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="email"
 					placeholder="Email"
 					bind:value={email}
@@ -51,14 +59,14 @@
 
 				<input
 					type="password"
-					class="block border border-grey-light w-full p-3 rounded mb-4"
+					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="password"
 					placeholder="Password"
 					bind:value={password}
 				/>
 				<button
 					type="submit"
-					class="w-full text-center py-3 rounded bg-blue-500  text-white hover:bg-green-dark focus:outline-none my-1"
+					class="w-full btn btn-primary"
 					>Login</button
 				>
 			</div>

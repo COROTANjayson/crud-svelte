@@ -1,19 +1,19 @@
 
 <script>
+// @ts-nocheck
+
 	import '../../app.css';
-	import { supabase } from '../../supabase.js';
-	import { user } from '../../store/authStore.js';
-	import Navbar from '../../components/Navbar.svelte';
+	import { supabase } from '$lib/supabase.js';
+	import { user } from '$lib/store/authStore.js';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	
   $: loading = false;
   
-	// @ts-ignore
   onMount(async () => {
 
 		const getUser = await supabase.auth.getUser();
-		console.log('User', getUser);
 		if (getUser.data.user === null) {
 			goto('login');
 		} else {

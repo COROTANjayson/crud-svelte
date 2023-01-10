@@ -12,7 +12,6 @@
 	let selectNav = $nav;
 	$: {
 		selectNav = $nav;
-		console.log('navigation', selectNav);
 	}
 </script>
 
@@ -31,7 +30,7 @@
 			</div>
 			<button
 				type="submit"
-				class="shadow-sm rounded bg-pink-500 hover:bg-pink-600 text-white py-2 px-4"
+				class="btn btn-accent py-2 px-4 text-white"
 				on:click={logout}
 			>
 				Log Out

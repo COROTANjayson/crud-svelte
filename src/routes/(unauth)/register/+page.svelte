@@ -8,10 +8,13 @@
 	/** @type {import('./$types').ActionData} */
 
 	export let form;
-	$: isRegister = false
+	$: isRegister = false;
 	$: {
 		if (form?.register) {
-			// goto('/login')
+			isRegister = true;
+			setTimeout(() => {
+				goto('/login');
+			}, 2000);
 		}
 	}
 </script>
@@ -21,15 +24,24 @@
 		<div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 			<div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
 				<h1 class="mb-8 text-3xl text-center">Sign up</h1>
+				{#if isRegister}
+					<div
+						class="w-full bg-green-200 p-3 rounded-lg mb-3 flex flex-col justify-center items-center"
+					>
+						<p>Successfully registered</p>
+						<p>redirecting...</p>
+					</div>
+				{/if}
+
 				<input
 					type="text"
-					class="block border border-grey-light w-full p-3 rounded mb-4"
+					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="email"
 					placeholder="Email"
 				/>
 				<input
 					type="password"
-					class="block border border-grey-light w-full p-3 rounded mb-4"
+					class="input input-bordered w-full max-w-xs p-3 mb-4"
 					name="password"
 					placeholder="Password"
 				/>
@@ -39,11 +51,7 @@
 					name="confirm_password"
 					placeholder="Confirm Password"
 				/> -->
-				<button
-					type="submit"
-					class="w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-green-dark focus:outline-none my-1"
-					>Create Account</button
-				>
+				<button type="submit" class="w-full btn btn-primary">Create Account</button>
 			</div>
 
 			<div class="text-grey-dark mt-6">

@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { supabase } from "../../../supabase.js";
+import { supabase } from "$lib/supabase.js";
 // import { nav } from '../../../store'
-import { isUpdate, input } from "../../../store/contactStore";
+// import { formButton, input } from "$lib/store/contactStore";
 import { fail } from '@sveltejs/kit';
 // import { user } from "../../..authStore";
 /** @type {import('../$types').PageServerLoad} */
@@ -19,14 +19,14 @@ export async function load({ params, url }) {
 export const actions = {
     addContact: async ({request, url}) => {
         const data = await request.formData();
-        
+        let isAdded = false;
         const user_id = url.searchParams.get('id');
      
-        const firstName = data.get('firstName')
-        const lastName = data.get('lastName')
-        const age = data.get('age')
-        const birthdate = data.get('birthdate')
-        const number = data.get('number')
+        const firstName = data.get('firstName');
+        const lastName = data.get('lastName');
+        const age = data.get('age');
+        const birthdate = data.get('birthdate');
+        const number = data.get('number');
         const contact = {
             firstName,
             lastName,
@@ -35,7 +35,7 @@ export const actions = {
             number,
             user_id
 
-        }
+        };
         // console.log('hh',contact)
     
         // let letters = /^[A-Za-z]+$/;
@@ -55,11 +55,13 @@ export const actions = {
         if (error) {
             return console.error(error);
         }
+        isAdded = true;
+        return { isAdded: isAdded };
 
     },
     updateContact: async ({ url, request }) => {
         const data = await request.formData();
-
+        let isAdded = false;
         const id = url.searchParams.get('id');
 
         const firstName = data.get('firstName')
@@ -84,12 +86,13 @@ export const actions = {
             }
         }
 
-        isUpdate.update((n) => (n = false));
+        // formButton.update((n) => (n = false));
         const { error } = await supabase.from('contact').update(contact).match({ id })
         if (error) {
             return console.error(error);
         }
-
+        isAdded = true;
+        return { isAdded: isAdded };
 
     },
     deleteContact: async ({ url }) => {

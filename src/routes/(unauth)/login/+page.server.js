@@ -1,8 +1,5 @@
-import { supabase } from "../../../supabase.js";
-import { nav } from '../../../store/store'
-import { isUpdate, input } from "../../../store/contactStore";
-import { fail } from '@sveltejs/kit';
-import { goto } from '$app/navigation';
+// import { supabase } from "$lib/supabase.js";
+
 
 /** @type {import('./$types').Actions} */
 // export const actions = {
@@ -12,37 +9,31 @@ import { goto } from '$app/navigation';
 
 //         const email = formData.get('email')
 //         const password = formData.get('password')
-       
+
 //         const contact = {
 //             email,
 //             password,
 //         }
-//         console.log(contact)
+//         // console.log(contact)
 
 //         const { data, error } = await supabase.auth.signInWithPassword({
 //             email: email,
 //             password: password,
 //         });
-//         console.log(data)
-//         let login = true
-//         if(data.session === null) {
-//             login = true
-//         }
-//         return {login: login, authData: data}
-//         // let letters = /^[A-Za-z]+$/;
-//         /**
-//          * @param {string} str
-//          */
-//         // const containsAnyLetters = (str) => {
-//         //     return /[a-zA-Z]/.test(str);
-//         // }
-  
 
-//         // const { error } = await supabase.from('contact').insert([contact]);
-//         // if (error) {
-//         //     return console.error(error);
-//         // }
+
+//         // console.log(data)
+//         let login = false
+
+//         if (error) {
+//             console.log('error')
+//             return { login: login, user: data, email: email }
+//         } else {
+//             login = true
+//             return { login: login, user: data }
+
+//         }
 
 //     },
-   
+
 // };

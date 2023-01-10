@@ -1,6 +1,6 @@
-import { supabase } from "../../../supabase.js";
-import { nav } from '../../../store/store'
-import { isUpdate, input } from "../../../store/contactStore";
+import { supabase } from "$lib/supabase.js";
+import { nav } from '../../../lib/store/store'
+// import { isUpdate, input } from "../../../lib/store/contactStore";
 import { fail } from '@sveltejs/kit';
 import { goto } from '$app/navigation';
 
