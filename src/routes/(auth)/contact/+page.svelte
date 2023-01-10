@@ -41,7 +41,9 @@
 		user_id = getUser.data.user.id;
 	});
 </script>
-
+<svelte:head>
+	<title>Contact</title>
+</svelte:head>
 <main>
 	<ContactList contacts={contactList} {user_id} form={forms}/>
 	

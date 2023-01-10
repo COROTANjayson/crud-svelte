@@ -31,7 +31,9 @@
 		}
 	}
 </script>
-
+<svelte:head>
+	<title>Register</title>
+</svelte:head>
 <div class="bg-grey-lighter h-full flex flex-col">
 	<form method="POST" use:enhance action="?/register">
 		<div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">

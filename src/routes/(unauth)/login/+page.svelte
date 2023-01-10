@@ -30,7 +30,9 @@
 		}
 	}
 </script>
-
+<svelte:head>
+	<title>Login</title>
+</svelte:head>
 <form class="form-control" method="POST" on:submit|preventDefault={handleLogin}>
 
 	<div class="bg-grey-lighter h-full flex flex-col">
