@@ -15,15 +15,19 @@ export async function load({ params, url }) {
 /** @type {import('../$types').Actions} */
 export const actions = {
     addContact: async ({request, url}) => {
-        const data = await request.formData();
         let isAdded = false;
         const user_id = url.searchParams.get('id');
-     
-        const firstName = data.get('firstName');
-        const lastName = data.get('lastName');
-        const age = data.get('age');
-        const birthdate = data.get('birthdate');
-        const number = data.get('number');
+
+        const data = await request.formData();
+        const formProps = Object.fromEntries(data);
+        
+        const {firstName, lastName, age, birthdate, number} = formProps;
+        // const firstName = data.get('firstName');
+        // const lastName = data.get('lastName');
+        // const age = data.get('age');
+        // const birthdate = data.get('birthdate');
+        // const number = data.get('number');
+        
         const contact = {
             firstName,
             lastName,
@@ -33,7 +37,6 @@ export const actions = {
             user_id
 
         };
-    
         /**
          * @param {string} str
          */
